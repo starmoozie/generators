@@ -46,6 +46,9 @@ class CrudStarmoozieCommand extends Command
             'code' => "Route::crud('$lowerName', '{$name}CrudController');",
         ]);
 
+        // Create DB migration
+        \Artisan::call('make:migration create_'.strtolower($name));
+
         // Create the sidebar item
         $this->call('starmoozie:add-sidebar-content', [
             'code' => "<li class='nav-item'><a class='nav-link' href='{{ starmoozie_url('$lowerName') }}'><i class='nav-icon la la-question'></i> $pluralName</a></li>",
